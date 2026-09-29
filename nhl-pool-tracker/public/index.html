@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMO2026 • NHL Pool Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="puck">●</div><div><strong>BMO2026</strong><span>NHL POOL • 2026–27</span></div></div>
+  <nav>
+    <button data-view="standings" class="nav active">Standings</button>
+    <button data-view="players" class="nav">Players</button>
+    <button data-view="history" class="nav">History</button>
+    <button data-view="rules" class="nav">Rules</button>
+  </nav>
+  <div class="actions"><span id="lastUpdated">Waiting for data…</span><button id="refresh" title="Refresh NHL stats">↻</button></div>
+</header>
+<main>
+<section id="view-standings" class="view active">
+  <div class="hero">
+    <div><div class="eyebrow">REGULAR SEASON • LIVE TRACKER</div><h1>Pool Standings</h1><p>Stats are pulled from NHL regular-season data and converted to pool points.</p></div>
+    <div class="hero-stat"><span>Participants</span><b id="participantCount">—</b></div>
+  </div>
+  <div id="standings" class="card table-wrap"></div>
+</section>
+
+<section id="view-players" class="view">
+  <div class="hero compact"><div><div class="eyebrow">PLAYER LOOKUP</div><h1>Players</h1><p>Search a drafted player to see season stats and pool ownership.</p></div></div>
+  <div class="card searchbar"><input id="playerSearch" placeholder="Search McDavid, Makar, Sorokin…" autocomplete="off"></div>
+  <div id="playerResults" class="player-grid"></div>
+</section>
+
+<section id="view-history" class="view">
+  <div class="hero compact"><div><div class="eyebrow">SEASON TREND</div><h1>History</h1><p>Daily snapshots show how the race has changed over the season.</p></div></div>
+  <div class="card chart-card"><div class="chart-head"><strong>Cumulative pool points</strong><span id="historyMeta">—</span></div><svg id="chart" viewBox="0 0 1000 460" preserveAspectRatio="none" role="img" aria-label="Cumulative points trend"></svg><div id="chartLegend" class="legend"></div></div>
+</section>
+
+<section id="view-rules" class="view">
+  <div class="hero compact"><div><div class="eyebrow">POOL SETTINGS</div><h1>Rules</h1><p>Loaded from the supplied BMO2026 pool sheet.</p></div></div>
+  <div class="rules-grid">
+    <div class="card rule"><h3>Forwards</h3><div>Goal <b>2</b></div><div>Assist <b>1</b></div></div>
+    <div class="card rule"><h3>Defencemen</h3><div>Goal <b>2</b></div><div>Assist <b>1</b></div></div>
+    <div class="card rule"><h3>Goalies</h3><div>Win <b>2</b></div><div>Shutout <b>2</b></div><div>OT Loss <b>1</b></div></div>
+    <div class="card rule"><h3>Teams</h3><div>Win <b>2</b></div><div>OT Loss <b>1</b></div></div>
+  </div>
+  <div class="card note"><b>Update cadence:</b> the server snapshots at 06:00 America/Toronto daily, and the refresh button can be used after a game night. Browser displays auto-refresh every 15 minutes.</div>
+</section>
+</main>
+
+<div id="modal" class="modal hidden"><div class="modal-inner"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<script src="/app.js"></script>
+</body></html>
